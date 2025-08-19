@@ -4,7 +4,7 @@
 
 ## Overview
 
-BAP-700 introduces Non-Fungible Agents (NFAs)—programmable, autonomous tokens that act as on-chain "agents" capable of executing tasks, evolving, and interacting with other contracts. Inspired by the iconic "007" designation for elite agents, this standard merges the uniqueness of NFTs with autonomous functionality, positioning BNB Chain as the home for decentralized automation.
+BAP-700 introduces Non-Fungible Agents (NFAs)—programmable, autonomous tokens that act as on-chain "agents" capable of executing tasks, evolving, and interacting with other contracts. This standard merges the uniqueness of NFTs with autonomous functionality, positioning BNB Chain as the home for decentralized automation.
 
 This implementation provides a complete framework for creating, managing, and governing autonomous agent tokens on the BNB Chain with **optional learning capabilities** that allow agents to evolve and improve over time.
 
@@ -99,7 +99,7 @@ Standardization through BAP-700 enables:
 
 - **Autonomous Behavior**: Agents execute predefined logic (e.g., trading, interacting with contracts) without manual intervention
 - **Statefulness**: Each agent maintains mutable state variables stored on-chain
-- **Interoperability**: Agents can interact with any smart contract on the BNB Chain, including BEP-20 and BEP-721 tokens
+- **Interoperability**: Agents can interact with any smart contract on the BNB Chain, including BAP-20 and BAP-721 tokens
 - **Upgradability**: Agent logic can be upgraded by their owners via proxy patterns or modular logic
 - **Optional Learning**: Agents can evolve and improve through cryptographically verifiable learning systems
 - **Governance**: Protocol-level governance for parameter updates and improvements
@@ -112,7 +112,7 @@ Standardization through BAP-700 enables:
 
 ## Token Structure
 
-- **Inheritance**: Extends BEP-721 (NFT standard) with additional agent-specific functions
+- **Inheritance**: Extends BAP-721 (NFT standard) with additional agent-specific functions
 - **Metadata**: Includes static attributes, dynamic metadata, state variables, and optional learning data
 - **Smart Contract Design**: Implements key functions like executeAction(), setLogicAddress(), fundAgent(), getState(), and optional learning functions
 - **Hybrid Storage**: Essential data on-chain, extended data off-chain with secure references
@@ -205,8 +205,8 @@ BAP-700 tokens include an enhanced metadata structure with:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/BAP700.git
-cd BAP700
+git clone https://github.com/ChatAndBuild/non-fungible-agents-BAP700.git
+cd non-fungible-agents-BAP700
 ```
 
 2. Install dependencies:
@@ -323,7 +323,7 @@ const initialRoot = ethers.utils.keccak256(
 );
 
 // Enable learning on existing agent
-const tx = await BAP700Enhanced.enableLearning(
+const tx = await bap700Enhanced.enableLearning(
   tokenId,
   merkleTreeLearning.address,
   initialRoot
@@ -339,14 +339,14 @@ To record interactions that help the agent learn:
 
 ```javascript
 // Record successful interaction
-await BAP700Enhanced.recordInteraction(
+await bap700Enhanced.recordInteraction(
   tokenId,
   "code_generation",
   true // success
 );
 
 // Record failed interaction
-await BAP700Enhanced.recordInteraction(
+await bap700Enhanced.recordInteraction(
   tokenId,
   "bug_fixing", 
   false // failure
@@ -360,7 +360,7 @@ console.log(`📊 Interactions recorded for learning`);
 To view an agent's learning metrics:
 
 ```javascript
-const { enabled, moduleAddress, metrics } = await BAP700Enhanced.getLearningInfo(tokenId);
+const { enabled, moduleAddress, metrics } = await bap700Enhanced.getLearningInfo(tokenId);
 
 if (enabled) {
   console.log(`🧠 Learning Module: ${moduleAddress}`);
@@ -412,7 +412,7 @@ To register a experience module:
 ```javascript
 // Create module metadata
 const moduleMetadata = JSON.stringify({
-  context_id: "nfa007-experience-001",
+  context_id: "nfa700-experience-001",
   owner: ownerAddress,
   created: new Date().toISOString(),
   persona: "Strategic crypto analyst"
